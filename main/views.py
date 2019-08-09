@@ -28,9 +28,9 @@ def writer_info(request, writer_id):
     context.setdefault('nickname', account.nickname)
     context.setdefault('thumbnail', account.profile_image)
     context.setdefault('is_writer', account.is_writer)
+    context.setdefault('myAccount', Account.objects.get(user=request.user))
 
   context.setdefault('account', Account.objects.get(id=writer_id))
-  context.setdefault('myAccount', Account.objects.get(user=request.user))
   
   return render(request, 'writer_info.html', context)
     
