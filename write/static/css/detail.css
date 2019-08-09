@@ -1,0 +1,138 @@
+@font-face { font-family: 'NIXGONL-Vb'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/NIXGONL-Vb.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+#navbar {
+    display: none;
+  }
+  
+  #content {
+    min-width: 800px;
+  }
+  
+  #content .container {
+    width: 800px;
+    padding: 100px 0;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .top_menu {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .top_menu select {
+    flex: 1;
+    background: #404040;
+    color:#f2f2f2;
+    padding: 15px;
+    outline: 0;
+    border: 0;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  
+  .top_menu select + select {
+    border-left: 1px solid rgba(217, 204, 193, 0.5);
+  }
+  
+  .title {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    outline: 0;
+    border: 1px solid #495057;
+    border-bottom: 0;
+    resize: none;
+  }
+
+  .date {
+    padding: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    outline: 0;
+    border-right: 1px solid #495057;
+    border-left: 1px solid #495057;
+    border-top: 0;
+    border-bottom: 0;
+    resize: none;
+    line-height: 1.5;
+  }
+  
+  .body {
+    padding: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    outline: 0;
+    border: 1px solid #495057;
+    border-top: 0;
+    resize: none;
+    height: 600px;
+    line-height: 1.5;
+    margin-bottom: 0px;
+  }
+
+  
+  button {
+    padding: 20px;
+    font-size: 17px;
+    font-weight: 700;
+    border: 0;
+    outline: 0;
+    border-radius: 3px;
+    width: 200px;
+    background: #404040;
+    color: white;
+    cursor: pointer;
+    align-self: center;
+    width: 400px;
+
+  }
+
+  .element {
+    font-family: 'NIXGONL-Vb';
+    padding-top: 20px;
+  }
+
+  .post {
+    border: 1px solid #404040;
+    background-color: white;
+    width: 800px;
+    text-align: left;
+    text-indent: 20px;
+  }
+
+.top_menu {
+    display: flex;
+    justify-content: center;
+}
+
+.title .body .date { 
+    padding: 10px;
+}
+
+.comment {
+    background: white;
+    border: 1px solid #404040;
+    height: 100px;
+    width: 800px;
+    padding-top: 10px;
+    margin-top: 0px;
+}
+
+.comment_count {
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+textarea {
+    width: 800px;
+    height: 100px;
+}
+
+h1 {
+    font-size: 15px;
+}

@@ -131,6 +131,7 @@ def writer_apply(request):
             context.setdefault('nickname', account.nickname)
             context.setdefault('thumbnail', account.profile_image)
             context.setdefault('is_writer', account.is_writer)
+            context.setdefault('id', account.id)
 
         return render(request,'account/writer_apply.html', context)
 
@@ -175,6 +176,7 @@ def mypage(request):
     context.setdefault('nickname', account.nickname)
     context.setdefault('thumbnail', account.profile_image)
     context.setdefault('is_writer', account.is_writer)
+    context.setdefault('id', account.id)
 
     context.setdefault('account', Account.objects.get(user=request.user))
   
