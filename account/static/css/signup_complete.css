@@ -1,0 +1,33 @@
+html, body {
+  height: 100vh;
+}
+
+#navbar {
+  display: none;
+}
+
+#content, #content .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container img {
+  margin-bottom: 50px;
+}
+
+.container div {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.container a {
+  margin-top: 30px;
+  font-size: 20px;
+  padding: 10px;
+  border-bottom: 3px solid rgba(222, 182, 75);
+  font-weight: 700;
+}

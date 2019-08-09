@@ -1,0 +1,45 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/write.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <!-- 데이터베이스의 모델을 화면 출력 -->
+    <form action="" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <div class="top_menu">
+            <select name="type">
+                <option value="소설">소설</option>
+                <option value="시">시</option>
+                <option value="수필">수필</option>
+            </select>
+            <select name="font" onchange="changeFont()">
+                <option value="NIXGONL-Vb">닉스곤 폰트</option>
+                <option value="Arial">Arial</option>
+                <option value="Gulim">굴림</option>
+                <option value="Dotum">돋움</option>
+            </select>
+            <select name="size" onchange="changeSize()">
+                <option value="20px">상</option>
+                <option value="17px">중</option>
+                <option value="14px">하</option>
+            </select>
+            <select name="align" onchange="changeAlign()">
+                <option value="left">왼쪽</option>
+                <option value="center">가운데</option>
+                <option value="right">오른쪽</option>
+            </select>
+        </div>
+
+        <input class="title" type="text" placeholder="제목을 입력하세요." name="title">
+        <textarea class="content" placeholder="내용을 입력하세요." name="content"></textarea>
+        <input class="file" type="file" name="file">
+        <button type="submit">제출하기</button>
+    </form>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/write.js' %}"></script>
+{% endblock %}

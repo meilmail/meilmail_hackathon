@@ -1,0 +1,101 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/writer_apply.css' %}">
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="writer_info_top">
+    <div class="writer_info_top_left">
+      <div class="writer_info_top_thumbnail" onclick="clickInput()">
+        <input type="file" name="profile_image" onchange="changeThumbnail()">
+        <div class="writer_info_top_thumbnail_img">
+          <img src="{{ account.profile_image.url }}" alt="">
+        </div>
+      </div>
+      <div>
+        <div class="writer_info_top_name">
+          <input type="text" name="writer_name" placeholder="이름을 입력해주세요." value="{{account.writer_name}}">
+        </div>
+        <div class="writer_info_top_hashtag">
+          <input type="text" name="hash_tag" placeholder="해시태그를 입력해주세요."  value="{{account.hashtag}}">
+        </div>
+        <div class="writer_info_top_jenre">
+          <input type="text" name="jenre" placeholder="장르를 입력해주세요." value="{{account.jenre}}">
+        </div>
+      </div>
+    </div>
+    <div class="writer_info_top_subscribe">
+      <input type="submit" value="수정하기" />
+    </div>
+  </div>
+
+  <!--탭-->
+  <div class="tabs">
+    <input type="radio" name="tabs" id="tabone" checked="checked">
+    <label for="tabone">대표글</label>
+    <div class="tab">
+      <div>
+        <div class="tabone_item_title">대표글 1</div>
+        <div class="tabone_item_content">
+          <textarea name="main_post1" rows="10">
+            {{account.main_post1}}
+          </textarea>
+        </div>
+      </div>
+      <div>
+        <div class="tabone_item_title">대표글 2</div>
+        <div class="tabone_item_content">
+          <textarea name="main_post2" rows="10">
+            {{account.main_post2}}
+          </textarea>
+        </div>
+      </div>
+      <div>
+        <div class="tabone_item_title">대표글 3</div>
+        <div class="tabone_item_content">
+          <textarea name="main_post3" rows="10">
+            {{account.main_post3}}
+          </textarea>
+        </div>
+      </div>
+    </div>
+
+    <input type="radio" name="tabs" id="tabtwo">
+    <label for="tabtwo">작가 소개</label>
+    <div class="tab">
+      <div class="tabone_item_content">
+        <textarea name="introduction" rows="10">
+          {{account.introduction}}
+        </textarea>
+      </div>
+    </div>
+
+    <input type="radio" name="tabs" id="tabthree">
+    <label for="tabthree">글 목록</label>
+    <div class="tab">
+      <table class="post_table">
+        <tr>
+          <td>글 번호</td>
+          <td>글 제목</td>
+          <td>업로드 날짜</td>
+        </tr>
+        {% for post in account.post_set.all  %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a href="{% url 'detail' post.id %}">{{ post.title }}</a></td>
+            <td>{{ post.pub_date|date:"Y/m/d D" }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</form>
+{% endblock %}
+
+{% block script %}
+  <script src="{% static 'js/writer_apply.js' %}"></script>
+{% endblock %}

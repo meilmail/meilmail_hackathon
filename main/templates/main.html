@@ -1,0 +1,58 @@
+{% extends 'template.html' %}
+{% load static %}
+
+<!-- Title 태그 Block -->
+{% block title %}
+  <title>매일메일 첫 페이지</title>
+{% endblock %}
+
+<!-- Style Block -->
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'css/slick.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}" type="text/css" />
+{% endblock %}
+
+<!-- Content Block -->
+{% block content %}
+  <div class="main_carousel">
+    <div><img src="{% static 'images/carousel_1.png' %}" alt=""></div>
+    <div><img src="{% static 'images/carousel_2.png' %}" alt=""></div>
+    <div><img src="{% static 'images/carousel_3.png' %}" alt=""></div>
+  </div>
+
+  <div class="writer_list">
+    <div class="writer_list_head">
+      매일, 메일로 시를 보내는 작가들
+    </div>
+    <div class="writer_list_body">
+      {% for writer in writer_list %}
+        <a href="{% url 'writer_info' writer.id %}">
+          <div class="writer_list_item">
+            <div class="writer_list_item_thumbnail">
+              <img src="{{ writer.profile_image.url }}" />
+            </div>
+            <div class="writer_list_item_name">
+              {{ writer.writer_name }}
+            </div>
+            <div class="writer_list_item_hashtags">
+              {{ writer.hashtag }}
+            </div>
+            <div class="writer_list_item_description">
+              {{ writer.introduction }}
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+  <script src="{% static 'js/slick.min.js' %}"></script>
+  <script src="{% static 'js/carousel.js' %}"></script>
+{% endblock %}

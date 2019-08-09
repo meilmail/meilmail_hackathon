@@ -1,0 +1,48 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}
+  <title>회원 정보 수정</title>
+{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/mypage_change.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+  <div class="element">
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <a href="{% url 'home' %}">
+        <img class="logo" src="{% static 'images/meilmail_logo.png' %}">
+      </a>
+      <div class="mypage_change">
+        <div class="writer_info_top_thumbnail" onclick="clickInput()">
+          <input type="file" name="profile_image" onchange="changeThumbnail()">
+          <div class="writer_info_top_thumbnail_img">
+            <img src="{{ account.profile_image.url }}" alt="">
+          </div>
+        </div>
+        <div class="mypage_change_input">
+          <input type="text" value="{{account.email}}" readonly>
+          <input type="password" name="password" placeholder="비밀번호를 입력하세요">
+          <input type="password" name="password_confirm" placeholder="비밀번호를 확인해주세요">
+          <input type="text" name="nickname" placeholder="닉네임을 알려주세요">
+        </div>
+      </div>
+      <div class="messages">
+        {% if messages %}
+          {% for message in messages %}
+            {{ message.tags }}
+            {{ message.message }}
+          {% endfor %}
+        {% endif %}
+      </div>
+      <input type="submit" value="회원 정보 수정">
+    </form>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script src="{% static 'js/writer_apply.js' %}"></script>
+{% endblock %}

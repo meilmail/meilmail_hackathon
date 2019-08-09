@@ -1,0 +1,88 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/writer_info.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="writer_info_top">
+  <div class="writer_info_top_left">
+    <div class="writer_info_top_thumbnail">
+      <img src="{{ account.profile_image.url }}" />
+    </div>
+    <div>
+      <div class="writer_info_top_name">{{account.writer_name}}</div>
+      <div class="writer_info_top_hashtag">#{{account.hashtag}}</div>
+      <div class="writer_info_top_jenre">{{account.jenre}}</div>
+    </div>
+  </div>
+  <div class="writer_info_top_subscribe">
+    {% if user.is_authenticated %}
+      {% if account.id == myAccount.id %}
+      <a href="{% url 'writer_change' %}">작가 정보 수정</a>
+      {% else %}
+        {% if account in myAccount.subscribe.all %}
+          <a href="{% url 'unsubscribe' account.id %}">구독 취소</a>
+        {% else %}
+          <a href="{% url 'subscribe' account.id %}">구독하기</a>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+<!--탭-->
+<div class="tabs">
+  <input type="radio" name="tabs" id="tabone" checked="checked">
+  <label for="tabone">대표글</label>
+  <div class="tab">
+    <div>
+      <div class="tabone_item_title">대표글 1</div>
+      <div class="tabone_item_content">
+        {{account.main_post1}}
+      </div>
+    </div>
+    <div>
+      <div class="tabone_item_title">대표글 2</div>
+      <div class="tabone_item_content">
+        {{account.main_post2}}
+      </div>
+    </div>
+    <div>
+      <div class="tabone_item_title">대표글 3</div>
+      <div class="tabone_item_content">
+        {{account.main_post3}}
+      </div>
+    </div>
+  </div>
+
+  <input type="radio" name="tabs" id="tabtwo">
+  <label for="tabtwo">작가 소개</label>
+  <div class="tab">
+    <div class="tabone_item_content">
+      {{account.main_post3}}
+    </div>
+  </div>
+
+  <input type="radio" name="tabs" id="tabthree">
+  <label for="tabthree">글 목록</label>
+  <div class="tab">
+    <table class="post_table">
+      <tr>
+        <td>글 번호</td>
+        <td>글 제목</td>
+        <td>업로드 날짜</td>
+      </tr>
+      {% for post in account.post_set.all  %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td><a href="{% url 'detail' post.id %}">{{post.title}}</a></td>
+        <td>{{post.pub_date|date:"Y/m/d D"}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="writer_info_top">
+  <div class="writer_info_top_left">
+    <div class="writer_info_top_thumbnail">
+      <img src="{{ account.profile_image.url }}" />
+    </div>
+    <div>
+      <div class="writer_info_top_nickname">{{account.nickname}}</div>
+    </div>
+  </div>
+  <div class="writer_info_top_subscribe">
+    <a href="{% url 'mypage_change' %}">정보 수정</a>
+  </div>
+</div>
+
+<!--탭-->
+<div class="tabs">
+  <input type="radio" name="tabs" id="tabone" checked="checked">
+  <label for="tabone">내 구독 내역</label>
+  <div class="tab">
+    <table class="post_table">
+      <tr>
+        <td>번호</td>
+        <td>작가 이름</td>
+      </tr>
+      {% for subscribe in account.subscribe.all  %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td><a href="{% url 'writer_info' subscribe.id %}">{{subscribe.writer_name}}</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

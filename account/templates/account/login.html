@@ -1,0 +1,36 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}
+  <title>매일메일 들어가기</title>
+{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+  <div class="element">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <a href="{% url 'home' %}">
+        <img src="{% static 'images/meilmail_logo.png' %}">
+      </a>
+
+      <input type="text" name="email" placeholder="이메일을 입력하세요">
+      <input type="password" name="password" placeholder="비밀번호를 입력하세요">
+      <div class="messages">
+        {% if messages %}
+          {% for message in messages %}
+            {{ message.tags }}
+            {{ message.message }}
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="buttons">
+        <input type="submit" value="들어가기">
+        <a href="{% url 'signup' %}">회원가입</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

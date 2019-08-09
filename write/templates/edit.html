@@ -1,0 +1,7 @@
+<form method="POST" action="{% url 'write'%}">
+{% comment %} 액션 비워줘도 똑같은 효과가 있기 떄문에 지워도 됨 {% endcomment %}
+    {% csrf_token%}
+        <input type="text" name="title" value="{{post.title}}">
+        <input type="text" name="content" value="{{post.content}}">
+        <input type="submit" value="글쓰기">
+</form>
